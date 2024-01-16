@@ -1,0 +1,110 @@
+﻿openapi: 3.0.0
+info:
+  title: API de Chistes
+  description: API para gestionar chistes y operaciones matemáticas
+  version: 1.0.0
+paths:
+  /joke/api/jokes:
+    get:
+      summary: Obtener un chiste al azar
+      parameters:
+        - name: source
+          in: query
+          description: Origen del chiste (Chuck/Dad)
+          schema:
+            type: string
+      responses:
+        200:
+          description: Chiste aleatorio obtenido con éxito
+        400:
+          description: Origen no válido proporcionado
+        500:
+          description: Error interno del servidor
+    post:
+      summary: Guardar un nuevo chiste
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                joke:
+                  type: string
+      responses:
+        200:
+          description: Chiste guardado con éxito
+        500:
+          description: Error interno del servidor
+    put:
+      summary: Actualizar un chiste existente
+      parameters:
+        - name: number
+          in: query
+          description: Número de chiste a actualizar
+          schema:
+            type: integer
+        - name: joke
+          in: query
+          description: Nuevo texto del chiste
+          schema:
+            type: string
+      responses:
+        200:
+          description: Chiste actualizado con éxito
+        500:
+          description: Error interno del servidor
+    delete:
+      summary: Eliminar un chiste por número
+      parameters:
+        - name: number
+          in: query
+          description: Número de chiste a eliminar
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Chiste eliminado con éxito
+        500:
+          description: Error interno del servidor
+  /joke/api/jokes/GetFromDb:
+    get:
+      summary: Obtener todos los chistes de la base de datos
+      responses:
+        200:
+          description: Chistes obtenidos de la base de datos con éxito
+        404:
+          description: No se encontraron chistes en la base de datos
+        500:
+          description: Error interno del servidor
+  /math/api/matematica/MCM:
+    get:
+      summary: Calcular el Mínimo Común Múltiplo (MCM) de números
+      parameters:
+        - name: numbers
+          in: query
+          description: Lista de enteros para calcular el MCM
+          schema:
+            type: array
+            items:
+              type: integer
+      responses:
+        200:
+          description: MCM calculado con éxito
+        500:
+          description: Error interno del servidor
+  /math/api/matematica/Incremento:
+    get:
+      summary: Calcular el siguiente número en la secuencia
+      parameters:
+        - name: number
+          in: query
+          description: Número actual en la secuencia
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Siguiente número calculado con éxito
+        500:
+          description: Error interno del servidor
+
