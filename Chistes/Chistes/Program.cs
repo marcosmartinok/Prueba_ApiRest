@@ -1,4 +1,9 @@
+using Chistes.Data.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddScoped<JokeRepository>(provider => new JokeRepository(connectionString));
 
 // Add services to the container.
 

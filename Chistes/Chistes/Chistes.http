@@ -1,6 +1,6 @@
 @Chistes_HostAddress = http://localhost:5193
 
-GET {{Chistes_HostAddress}}/weatherforecast/
+GET {{Chistes_HostAddress}}/chistes/
 Accept: application/json
 
 ###
